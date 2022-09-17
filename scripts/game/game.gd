@@ -119,7 +119,7 @@ func _debug_mode(on):
 # called by start.tscn, generate level and start game with given difficulty
 func start_game(mode):
 	# set up parameters if in debug mode
-	_debug_mode(true)
+	_debug_mode(false)
 	# first generate level
 	$LevelGen.set_difficulty(mode)
 	$LevelGen.initialize_level()
