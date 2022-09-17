@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/image/enemy/mei.png" type="Texture" id=1]
+[ext_resource path="res://scripts/game/enemy/mei.gd" type="Script" id=2]
+[ext_resource path="res://assets/image/ui/game/player_light_mask.png" type="Texture" id=3]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[node name="Mei" type="AnimatedSprite" groups=["enemy"]]
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 1 )
+animation = "idle"
+script = ExtResource( 2 )
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 3 )
+texture_scale = 0.3
+energy = 0.7
+shadow_item_cull_mask = 2
+
+[node name="Noise" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="finished" from="Noise" to="." method="_on_Noise_finished"]

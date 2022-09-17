@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/ambience.mp3-6b6105f44bb1f72b0a542092befba955.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/ambience.mp3"
+dest_files=[ "res://.import/ambience.mp3-6b6105f44bb1f72b0a542092befba955.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

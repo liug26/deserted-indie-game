@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/1.mp3-73cb72ace64ab5bc6869d92ac9cae5ac.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/enemy_noises/1.mp3"
+dest_files=[ "res://.import/1.mp3-73cb72ace64ab5bc6869d92ac9cae5ac.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/vision_buff.mp3-7274c50d9ea19f2b2acf0eee6a7f9450.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/props/vision_buff.mp3"
+dest_files=[ "res://.import/vision_buff.mp3-7274c50d9ea19f2b2acf0eee6a7f9450.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

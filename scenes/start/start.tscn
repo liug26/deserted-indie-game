@@ -1,0 +1,224 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://assets/image/ui/start/button_pressed.png" type="Texture" id=1]
+[ext_resource path="res://assets/image/ui/start/credit_panel.png" type="Texture" id=2]
+[ext_resource path="res://assets/audio/start_ambience.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/font/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/image/ui/start/button_normal.png" type="Texture" id=5]
+[ext_resource path="res://assets/image/ui/start/button_hover.png" type="Texture" id=6]
+[ext_resource path="res://assets/image/ui/start/difficulty_panel.png" type="Texture" id=7]
+[ext_resource path="res://scripts/start/start.gd" type="Script" id=8]
+[ext_resource path="res://assets/image/ui/start/background.png" type="Texture" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+size = 120
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxTexture" id=4]
+texture = ExtResource( 6 )
+region_rect = Rect2( 0, 0, 213, 50 )
+
+[sub_resource type="StyleBoxTexture" id=5]
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 213, 50 )
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 213, 50 )
+
+[sub_resource type="StyleBoxTexture" id=6]
+texture = ExtResource( 6 )
+region_rect = Rect2( 0, 0, 213, 50 )
+
+[sub_resource type="StyleBoxTexture" id=7]
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 213, 50 )
+
+[sub_resource type="StyleBoxTexture" id=8]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 213, 50 )
+
+[sub_resource type="StyleBoxTexture" id=9]
+texture = ExtResource( 6 )
+region_rect = Rect2( 0, 0, 213, 50 )
+
+[sub_resource type="StyleBoxTexture" id=10]
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 213, 50 )
+
+[sub_resource type="StyleBoxTexture" id=11]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 213, 50 )
+
+[sub_resource type="StyleBoxTexture" id=12]
+texture = ExtResource( 6 )
+region_rect = Rect2( 0, 0, 213, 50 )
+
+[sub_resource type="StyleBoxTexture" id=13]
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 213, 50 )
+
+[sub_resource type="StyleBoxTexture" id=14]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 213, 50 )
+
+[sub_resource type="DynamicFont" id=15]
+size = 28
+font_data = ExtResource( 4 )
+
+[node name="Start" type="Node2D"]
+script = ExtResource( 8 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_top = -40.0
+margin_right = 1027.0
+margin_bottom = 727.0
+texture = ExtResource( 9 )
+expand = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Title" type="Label" parent="."]
+margin_left = 18.0
+margin_top = 109.0
+margin_right = 998.0
+margin_bottom = 241.0
+custom_fonts/font = SubResource( 1 )
+text = "deserted"
+align = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Play" type="Button" parent="."]
+margin_left = 401.0
+margin_top = 297.0
+margin_right = 614.0
+margin_bottom = 349.0
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/normal = SubResource( 3 )
+text = "Play"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Credits" type="Button" parent="."]
+margin_left = 401.0
+margin_top = 386.0
+margin_right = 614.0
+margin_bottom = 438.0
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
+text = "Credits"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Exit" type="Button" parent="."]
+margin_left = 401.0
+margin_top = 481.0
+margin_right = 614.0
+margin_bottom = 533.0
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/normal = SubResource( 11 )
+text = "Exit"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Difficulty" type="TextureRect" parent="."]
+visible = false
+margin_left = 342.0
+margin_top = 166.0
+margin_right = 654.0
+margin_bottom = 533.0
+texture = ExtResource( 7 )
+
+[node name="Easy" type="Button" parent="Difficulty"]
+margin_left = 53.0
+margin_top = 38.0
+margin_right = 266.0
+margin_bottom = 90.0
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 13 )
+custom_styles/normal = SubResource( 14 )
+text = "Easy"
+
+[node name="Medium" type="Button" parent="Difficulty"]
+margin_left = 53.0
+margin_top = 116.0
+margin_right = 266.0
+margin_bottom = 168.0
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 13 )
+custom_styles/normal = SubResource( 14 )
+text = "Medium"
+
+[node name="Hard" type="Button" parent="Difficulty"]
+margin_left = 53.0
+margin_top = 197.0
+margin_right = 266.0
+margin_bottom = 249.0
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 13 )
+custom_styles/normal = SubResource( 14 )
+text = "Hard"
+
+[node name="Nightmare" type="Button" parent="Difficulty"]
+margin_left = 53.0
+margin_top = 276.0
+margin_right = 266.0
+margin_bottom = 328.0
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 13 )
+custom_styles/normal = SubResource( 14 )
+text = "Nightmare"
+
+[node name="CreditsPanel" type="TextureRect" parent="."]
+visible = false
+margin_left = 334.0
+margin_top = 246.0
+margin_right = 684.0
+margin_bottom = 446.0
+texture = ExtResource( 2 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CreditsPanel"]
+margin_left = 26.0
+margin_top = 31.0
+margin_right = 331.0
+margin_bottom = 173.0
+custom_fonts/normal_font = SubResource( 15 )
+bbcode_enabled = true
+bbcode_text = "[center]Indie game by [wave amp=50 freq=2][color=aqua]liuguo[/color][/wave]. 
+Please follow up bugs to [u]liug22@hotmail.com[/u]"
+text = "Indie game by liuguo. 
+Please follow up bugs to liug22@hotmail.com"
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = 5.0
+autoplay = true
+
+[connection signal="pressed" from="Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="Credits" to="." method="_on_Credits_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_Exit_pressed"]
+[connection signal="pressed" from="Difficulty/Easy" to="." method="_on_Easy_pressed"]
+[connection signal="pressed" from="Difficulty/Medium" to="." method="_on_Medium_pressed"]
+[connection signal="pressed" from="Difficulty/Hard" to="." method="_on_Hard_pressed"]
+[connection signal="pressed" from="Difficulty/Nightmare" to="." method="_on_Nightmare_pressed"]
+[connection signal="meta_clicked" from="CreditsPanel/RichTextLabel" to="." method="_on_RichTextLabel_meta_clicked"]

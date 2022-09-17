@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/ice.mp3-a94dd61715be3890973af4e273260c06.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/props/ice.mp3"
+dest_files=[ "res://.import/ice.mp3-a94dd61715be3890973af4e273260c06.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
