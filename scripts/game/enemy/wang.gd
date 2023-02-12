@@ -46,6 +46,8 @@ var player_located = false
 # the Line2D assigned to enemy when scene is instantiated, displays
 # path for debugging
 var line2d
+# how many seconds have passed since the last A* call
+var elapsed_astar_delta = 0
 
 
 func _ready():
@@ -60,6 +62,8 @@ func _ready():
 func _process(delta):
 	if freeze:
 		return
+	# update A* delta count to limit A* search call frequency
+	elapsed_astar_delta = max(elapsed_astar_delta + delta, 10)
 	# check if collides with player
 	for body in get_overlapping_bodies():
 		if body.name == "Player":
@@ -68,7 +72,7 @@ func _process(delta):
 	if position.distance_squared_to(player.position) < chase_player_distance_squared and player.position.y > 0:
 		# chase player with chasing speed
 		speed = speed_chase
-		path = navigation.a_star_path(position, player.position)
+		_attempt_astar_player()
 		# update visibility when close to player
 		# linear function has alpha = 1 (visible) when distance_squared = 10,000
 		# has alpha = 0 (invisible) when distance_squared = 12,000
@@ -80,7 +84,7 @@ func _process(delta):
 		speed = speed_idle
 		if player_located and player.position.y > 0:
 			# if mei has located player and player is not in tunnel
-			path = navigation.a_star_path(position, player.position)
+			_attempt_astar_player()
 			# reset play_located every frame
 			player_located = false
 			# unlike all other enemies, wang will try to follow to
@@ -132,6 +136,15 @@ func _physics_process(delta):
 func _rand_roam_path():
 	path = navigation.a_star_path(position, navigation.tile_to_pixel(navigation.rand_path_tile()))
 	roam_ticker = rng.randi_range(roam_ticker_lower, roam_ticker_upper)
+
+
+# attempts to do an A* search from current position to the player
+# will not execute the search if the previous search happened too shortly before
+func _attempt_astar_player():
+	# if elapsed time exceeds an interval of time, execute the search
+	if elapsed_astar_delta > 0.1:
+		elapsed_astar_delta = 0
+		path = navigation.a_star_path(position, player.position)
 
 
 # when global freeze signal is emitted from Game, stop all updates

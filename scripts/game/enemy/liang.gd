@@ -66,6 +66,8 @@ var stolen_coins = 0
 # this is to prevent liang's stealing and returning from happening
 # during the same collision
 var invulnerable_seconds = 0
+# how many seconds have passed since the last A* call
+var elapsed_astar_delta = 0
 
 
 func _ready():
@@ -116,13 +118,15 @@ func _process(delta):
 	# until it reaches flee location
 	if freeze or flee:
 		return
+	# update A* delta count to limit A* search call frequency
+	elapsed_astar_delta = max(elapsed_astar_delta + delta, 10)
 	# determine if liang is on chase mode
 	if (player_located or position.distance_squared_to(player.position) < chase_player_distance_squared) and player.position.y > 0:
 		# chase mode is on when player is within chase range or located
 		# by mei, and is not in tunnel
 		chase = true
 		speed = speed_chase
-		path = navigation.a_star_path(position, player.position)
+		_attempt_astar_player()
 		# reset player_located every frame
 		player_located = false
 		# this line makes sure if enemy losse track of player,
@@ -176,6 +180,15 @@ func _physics_process(delta):
 func _rand_roam_path():
 	path = navigation.a_star_path(position, navigation.tile_to_pixel(navigation.rand_path_tile()))
 	roam_ticker = rng.randi_range(roam_ticker_lower, roam_ticker_upper)
+
+
+# attempts to do an A* search from current position to the player
+# will not execute the search if the previous search happened too shortly before
+func _attempt_astar_player():
+	# if elapsed time exceeds an interval of time, execute the search
+	if elapsed_astar_delta > 0.1:
+		elapsed_astar_delta = 0
+		path = navigation.a_star_path(position, player.position)
 
 
 # when global freeze signal is emitted from Game, stop all updates

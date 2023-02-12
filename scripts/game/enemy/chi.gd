@@ -46,6 +46,8 @@ var player_located = false
 # the Line2D assigned to enemy when scene is instantiated, displays
 # path for debugging
 var line2d
+# how many seconds have passed since the last A* call
+var elapsed_astar_delta = 0
 
 
 func _ready():
@@ -58,6 +60,8 @@ func _ready():
 func _process(delta):
 	if freeze:
 		return
+	# update A* delta count to limit A* search call frequency
+	elapsed_astar_delta = max(elapsed_astar_delta + delta, 10)
 	# check if collides with player
 	for body in get_overlapping_bodies():
 		if body.name == "Player":
@@ -66,7 +70,7 @@ func _process(delta):
 	if player_located and player.position.y > 0:
 		# chase player and resets player_located
 		speed = speed_chase
-		path = navigation.a_star_path(position, player.position)
+		_attempt_astar_player()
 		player_located = false
 		# this line makes sure if enemy losse track of player,
 		# immediately changes path to a roam location, instead of
@@ -76,7 +80,7 @@ func _process(delta):
 		# if player is not located by Mei, but is close enough to enemy
 		# and is not in tunnel, starting chasing player
 		speed = speed_chase
-		path = navigation.a_star_path(position, player.position)
+		_attempt_astar_player()
 	else:
 		# if player is in tunnel, or player is not seen by Mei
 		# and player is not in range of chasing, update roam
@@ -124,6 +128,15 @@ func _physics_process(delta):
 func _rand_roam_path():
 	path = navigation.a_star_path(position, navigation.tile_to_pixel(navigation.rand_path_tile()))
 	roam_ticker = rng.randi_range(roam_ticker_lower, roam_ticker_upper)
+
+
+# attempts to do an A* search from current position to the player
+# will not execute the search if the previous search happened too shortly before
+func _attempt_astar_player():
+	# if elapsed time exceeds an interval of time, execute the search
+	if elapsed_astar_delta > 0.1:
+		elapsed_astar_delta = 0
+		path = navigation.a_star_path(position, player.position)
 
 
 # when global freeze signal is emitted from Game, stop all updates
